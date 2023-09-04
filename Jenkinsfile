@@ -56,9 +56,9 @@ pipeline {
              withDockerRegistry(credentialsId: 'dockerhub_auth') {
              docker_image = docker.build "${IMAGE_NAME}"
            }
-             withDockerRegistry(credentialsId: 'dockerhub_auth'){
+        /*     withDockerRegistry(credentialsId: 'dockerhub_auth'){
              docker_image.push("${IMAGE_TAG}")
-             }
+             } */
            }
            }
         }
