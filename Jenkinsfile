@@ -13,7 +13,7 @@ pipeline {
 
         stage("checkout SCM") {
            steps { 
-           git branch: 'main', poll: false, url: 'https://github.com/ramkumar95/project'
+           git branch: 'main', poll: false, url: 'https://github.com/ramkumar95/project2.git'
            }
         }
 
