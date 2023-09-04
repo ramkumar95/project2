@@ -3,6 +3,15 @@ pipeline {
     tools {
         maven 'maven'
     }
+    environment {
+     APP_NAME = "jenkins"
+     RELEASE = "1.0"
+     DOCKER_USER = "rambpm"
+     DOCKER_PASS = "dockerhub_auth"
+     IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+     IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+
+    }
     stages {
 
         stage("cleanup workspace") {
@@ -37,6 +46,19 @@ pipeline {
            steps { 
             script { 
            waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube'
+           }
+           }
+        }
+
+         stage("docker image") {
+           steps { 
+            script { 
+             withDockerRegistry(credentialsId: 'dockerhub_auth') {
+             docker_image = docker.build "${IMAGE_NAME}"
+           }
+             withDockerRegistry(credentialsId: 'dockerhub_auth'){
+             docker_image.push("${IMAGE_TAG}")
+             }
            }
            }
         }
