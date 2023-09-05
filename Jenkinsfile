@@ -53,10 +53,10 @@ pipeline {
          stage("docker image") {
            steps { 
             script { 
-             withDockerRegistry(credentialsId: 'DOCKER_PASS') {
+             withDockerRegistry(credentialsId: 'dockerhub_auth') {
              docker_image = docker.build "${IMAGE_NAME}"
            }
-             withDockerRegistry(credentialsId: 'DOCKER_PASS'){
+             withDockerRegistry(credentialsId: 'dockerhub_auth'){
              docker_image.push("${IMAGE_TAG}")
              }
            }
