@@ -13,4 +13,4 @@ WORKDIR /var/lib/tomcat9/webapps/
 COPY --from=build /app/target/maven_web.war .
 EXPOSE 8080
 WORKDIR /usr/share/tomcat9/bin
-CMD ["./catalina.sh", "run"]
+CMD /bin/bash -c 'chmod +x catalina.sh && sh catalina.sh start'
