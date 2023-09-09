@@ -66,7 +66,7 @@ pipeline {
               stage("trivy scan") {
            steps { 
             script { 
-             sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image rambpm/jenkins:"${IMAGE_TAG}" --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table')
+             sh 'trivy image rambpm/jenkins:"${IMAGE_TAG}" --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table'
            }
            }
         }
