@@ -71,5 +71,14 @@ pipeline {
            }
         }
 
+            stage("cleanup") {
+              steps { 
+                script { 
+                  sh 'docker rmi rambpm/jenkins:"${IMAGE_TAG}"'
+                  sh 'docker rmi rambpm/jenkins:latest'
+           }
+           }
+        }
+
     }
 }
