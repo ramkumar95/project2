@@ -81,7 +81,7 @@ pipeline {
         }
             stage("invoking cd pipeline") {
               steps { 
-               build job: "cd-pipeline", wait: true
+               build job: 'cd-pipeline', parameters: [[$class: 'StringParameterValue', name: 'IMAGE_TAG', value: '${IMAGE_TAG}']]
            }
         }
 
