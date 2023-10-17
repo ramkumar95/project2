@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
      APP_NAME = "jenkins"
-     RELEASE = "1.0"
+     RELEASE = "1.5"
      DOCKER_USER = "rambpm"
      DOCKER_PASS = "dockerhub_auth"
      IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
